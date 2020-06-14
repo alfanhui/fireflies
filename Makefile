@@ -17,14 +17,14 @@
 DEVICE     = attiny13
 CLOCK      = 9600000
 # PROGRAMMER = -c avr910 -P /dev/tty.SLAB_USBtoUART -C /Users/alex/etc/avrdude.conf
-PROGRAMMER = -c usbtiny -v 
+PROGRAMMER = -c usbasp -v
 OBJECTS    = firefly.o
 # Fuses: internal oscilator, no prescale
-FUSES      =  -U hfuse:w:0xFF:m -U lfuse:w:0x7A:m
+FUSES      =  -U hfuse:w:0xFF:m -U lfuse:w:0x79:m
 
 # Tune the lines below only if you know what you are doing:
 
-AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE)
+AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE) -B 10
 OBJDUMP = avr-objdump
 COMPILE = avr-gcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
 
@@ -66,7 +66,7 @@ firefly.elf: $(OBJECTS)
 
 firefly.hex: firefly.elf
 	rm -f firefly.hex
-	avr-objcopy -j .text -j .data -O ihex firefly.elf firefly.hex
+	avr-objcopy -v -j .text -j .data -O ihex firefly.elf firefly.hex
 # If you have an EEPROM section, you must also create a hex file for the
 # EEPROM and add it to the "flash" target.
 
