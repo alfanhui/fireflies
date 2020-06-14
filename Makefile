@@ -15,7 +15,7 @@
 # FUSES ........ Parameters for avrdude to flash the fuses appropriately.
 
 DEVICE     = attiny13
-CLOCK      = 9600000
+CLOCK      = 9600000 # While attiny13 is 10mhz, this is more accurate to specs.
 # PROGRAMMER = -c avr910 -P /dev/tty.SLAB_USBtoUART -C /Users/alex/etc/avrdude.conf
 PROGRAMMER = -c usbasp -v
 OBJECTS    = firefly.o
