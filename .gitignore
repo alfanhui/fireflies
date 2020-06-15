@@ -2,3 +2,5 @@
 *.lss
 *.hex
 *.elf
+*.DS_Store
+
